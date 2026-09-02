@@ -2,7 +2,7 @@
 
 This sample demonstrates **Work Item Filtering**, a feature that allows workers to declare which orchestrations, activities, and entities they can process. The Durable Task Scheduler (DTS) backend routes work items only to workers whose filters match, preventing workers from receiving work they cannot handle.
 
-Before work item filtering, all orchestrations, activities, and entities were handed to any connected worker regardless of what it actually hosted. This caused errors (or silent hangs) when a worker received a work item it didn't implement — especially problematic in multi-service deployments, rolling upgrades, and microservice topologies. With filtering, each worker registers its task set; DTS creates per-filter queues and routes work items to matching workers. If no filter is specified, behavior falls back to the "generic queue" (all workers receive everything).
+Before work item filtering, all orchestrations, activities, and entities were handed to any connected worker regardless of what it actually hosted. This caused errors (or silent hangs) when a worker received a work item it didn't implement — especially problematic in multi-service deployments, rolling upgrades, and microservice topologies. With filtering, each worker registers its task set; DTS creates per-filter queues and routes work items to matching workers. If no filter is specified, a worker is eligible to receive any work item type or name, and DTS dispatches each work item to one eligible worker (it is not broadcast to every connected worker).
 
 This is the Python version of the sample. Equivalent [.NET](../WorkItemFilteringSplitActivities/) and [Java](../WorkItemFilteringSplitActivitiesJava/) versions are also available.
 
